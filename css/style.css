@@ -1,0 +1,68 @@
+/* =========================================================
+   TOKENS
+   --u = 1px макета при ширині 1920. Вище 1920 не росте.
+   ========================================================= */
+:root {
+  /* 1px макета при ширині 1440. Росте до 1920, далі стоп */
+  --u: min(calc(100vw / 1440), 1.3333px);
+
+  /* сітка: 10 колонок, як у Фігмі */
+  --grid-cols: 10;
+  --grid-margin: max(calc(80 * var(--u)), 24px);
+  --grid-gutter: calc(40 * var(--u));
+  --container: 1920px;
+
+  /* відступи всередині компонентів: фіксовані, кратні 4 */
+  --space-3xs: 4px;
+  --space-2xs: 8px;
+  --space-xs: 12px;
+  --space-s: 16px;
+  --space-m: 24px;
+  --space-l: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 128px;
+
+  --c-bg: #e9eaef;
+  --c-ink: #231f1f;
+  --c-text: #1b1b1d;
+  --c-header: #06070b;
+  --c-white: #ffffff;
+  --c-accent: #6b75dd;
+
+  --font: "Arimo", Arial, sans-serif;
+
+  --header-h: 72px;
+}
+/* =========================================================
+   RESET / BASE
+   ========================================================= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--c-bg);
+  color: var(--c-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg { display: block; max-width: 100%; }
+
+a { color: inherit; }
+
+button { font: inherit; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);
+}
