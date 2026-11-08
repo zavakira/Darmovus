@@ -1,0 +1,38 @@
+/* =========================================================
+   MARQUEE — бігучий рядок
+   ========================================================= */
+.marquee {
+    overflow: hidden;
+    background: var(--c-header);
+    color: var(--c-white);
+}
+
+.marquee__track {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-speed, 15s) linear infinite;
+    will-change: transform;
+}
+
+.marquee__group {
+    flex: none;
+    margin: 0;
+    padding: var(--space-m) .28em var(--space-m) 0;
+    /* 24 + 24 + 24 = 72 */
+    font-size: 24px;
+    line-height: 24px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+@keyframes marquee {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee__track {
+        animation-play-state: paused;
+    }
+}

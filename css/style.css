@@ -30,19 +30,27 @@
   --c-header: #06070b;
   --c-white: #ffffff;
   --c-accent: #6b75dd;
+  --c-muted: #6c6d75;
+  --c-line: #c9cad1;
+  --c-order: #6670b5;
 
   --font: "Arimo", Arial, sans-serif;
 
   --header-h: 72px;
 }
+
 /* =========================================================
    RESET / BASE
    ========================================================= */
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after {
+  box-sizing: border-box;
+}
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   margin: 0;
@@ -54,11 +62,18 @@ body {
 }
 
 img,
-svg { display: block; max-width: 100%; }
+svg {
+  display: block;
+  max-width: 100%;
+}
 
-a { color: inherit; }
+a {
+  color: inherit;
+}
 
-button { font: inherit; }
+button {
+  font: inherit;
+}
 
 .container {
   width: 100%;

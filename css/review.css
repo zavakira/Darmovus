@@ -1,0 +1,189 @@
+/* =========================================================
+   REVIEWS — відгуки
+   ========================================================= */
+.reviews {
+    padding-block: calc(80 * var(--u));
+}
+
+/* --- Заголовок і посилання --- */
+.reviews__head {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviews__title {
+    margin: 0;
+    font-size: max(calc(32 * var(--u)), 26px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -.05em;
+    text-transform: uppercase;
+    color: var(--c-ink);
+}
+
+.reviews__link {
+    align-self: flex-end;
+    margin-top: var(--space-m);
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--c-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color .2s ease;
+    margin-right: calc(132 * var(--u));
+}
+
+@media (hover: hover) {
+    .reviews__link:hover {
+        color: var(--c-accent);
+    }
+}
+/* --- Металева дошка --- */
+.board {
+  position: relative;
+  margin-top: var(--grid-gutter);
+  margin-bottom: calc(64 * var(--u));   /* місце під картку, що звисає */
+  margin-inline: calc(132 * var(--u));
+}
+
+/* тінь дошки на сторінку */
+.board__bg {
+  position: absolute;
+  inset: 0;
+  filter:
+    drop-shadow(0 24px 32px rgba(18, 20, 28, .16))
+    drop-shadow(0 2px 4px rgba(18, 20, 28, .12));
+}
+
+.board__metal {
+  --cut: 16px;
+
+  position: absolute;
+  inset: 0;
+  background: url("../images/review-plate.png") center / 100% 100% no-repeat, #d9dadf;
+  /* світлий край зверху, темніший знизу — об'єм листа металу */
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, .7),
+    inset 0 -3px 6px rgba(0, 0, 0, .12);
+  clip-path: polygon(
+    var(--cut) 0, calc(100% - var(--cut)) 0,
+    100% var(--cut), 100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%, var(--cut) 100%,
+    0 calc(100% - var(--cut)), 0 var(--cut));
+}
+
+.board__list {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(64 * var(--u));
+  margin: 0;
+  padding: calc(48 * var(--u)) calc(48 * var(--u)) calc(112 * var(--u));
+  list-style: none;
+}
+
+/* --- Картка на магніті --- */
+.note {
+  translate: 0 calc(var(--shift, 0) * var(--u));
+  /* тінь картки на метал: завжди вниз, хоч як картка повернута */
+  filter:
+    drop-shadow(0 2px 2px rgba(0, 0, 0, .22))
+    drop-shadow(0 14px 20px rgba(0, 0, 0, .26));
+  transition: filter .4s ease;
+}
+
+.note__pin {
+  position: relative;
+  transform-origin: 50% 0;           /* крутиться навколо магніту */
+  rotate: var(--rotate, 0deg);
+  transition:
+    rotate .5s cubic-bezier(.2, .8, .2, 1),
+    scale .5s cubic-bezier(.2, .8, .2, 1);
+}
+
+@media (hover: hover) {
+  .note:hover {
+    filter:
+      drop-shadow(0 4px 4px rgba(0, 0, 0, .18))
+      drop-shadow(0 28px 36px rgba(0, 0, 0, .28));
+  }
+
+  .note:hover .note__pin {
+    rotate: calc(var(--rotate, 0deg) * .5);
+    scale: 1.02;
+  }
+}
+
+/* --- Магніт --- */
+.note__magnet {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  margin-left: -16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%,
+    #ffffff 0 6%, #e3e5ea 14%, #9a9da6 42%, #4a4c53 72%, #222327 100%);
+  box-shadow:
+    inset -3px -4px 8px rgba(0, 0, 0, .35),
+    inset 2px 2px 3px rgba(255, 255, 255, .6),
+    2px 4px 6px rgba(0, 0, 0, .3);
+}
+
+/* --- Фото-картка --- */
+.note__card {
+  --cut: 8px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background: var(--c-white);
+  clip-path: polygon(
+    var(--cut) 0, calc(100% - var(--cut)) 0,
+    100% var(--cut), 100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%, var(--cut) 100%,
+    0 calc(100% - var(--cut)), 0 var(--cut));
+}
+
+/* легкий відблиск на папері */
+.note__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg,
+    rgba(255, 255, 255, .22) 0%, rgba(255, 255, 255, 0) 35%,
+    rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, .05) 100%);
+  pointer-events: none;
+}
+
+.note__photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% var(--photo-y, 50%);
+}
+
+.note__body {
+  flex: 1;
+  padding: var(--space-m);
+}
+
+.note__text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--c-ink);
+}
+
+.note__text p { margin: 0; }
+
+.note__author {
+  margin: var(--space-xs) 0 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #9b9ba3;
+}

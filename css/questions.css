@@ -1,0 +1,95 @@
+/* =========================================================
+   FAQ — питання
+   ========================================================= */
+.faq {
+  padding-block: calc(120 * var(--u));
+  interpolate-size: allow-keywords;   /* дозволяє плавно відкривати відповідь */
+}
+
+.faq__inner {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+}
+
+.faq__inner > * { grid-column: 3 / span 6; }
+
+.faq__title {
+  margin: 0 0 var(--space-l);
+  font-size: max(calc(32 * var(--u)), 26px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.05em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+}
+
+/* --- Питання --- */
+.faq__item { border-top: 1px solid var(--c-ink); }
+
+.faq__question {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding: var(--space-l) 0 var(--space-l) var(--space-s);   /* 32 + 24 + 32 = 88 */
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--c-ink);
+  list-style: none;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+
+.faq__question::-webkit-details-marker { display: none; }
+
+/* крапка зліва, як на макеті */
+.faq__question::before {
+  content: "•";
+  position: absolute;
+  left: calc(-1 * var(--space-s));
+}
+
+/* «+», який повертається в «×» */
+.faq__question::after {
+  content: "";
+  flex: none;
+  width: 16px;
+  height: 16px;
+  background:
+    linear-gradient(currentColor, currentColor) center / 100% 1.5px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 1.5px 100% no-repeat;
+  transition: rotate .3s ease;
+}
+
+.faq__item[open] .faq__question::after { rotate: 45deg; }
+
+@media (hover: hover) {
+  .faq__question:hover { color: var(--c-accent); }
+}
+
+.faq__question:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 4px;
+}
+
+/* --- Відповідь --- */
+.faq__answer {
+  padding: 0 var(--space-xl) var(--space-l) var(--space-s);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--c-muted);
+}
+
+.faq__answer p { margin: 0; }
+.faq__answer p + p { margin-top: var(--space-xs); }
+
+/* плавне відкриття */
+.faq__item::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition: block-size .3s ease, content-visibility .3s allow-discrete;
+}
+
+.faq__item[open]::details-content { block-size: auto; }

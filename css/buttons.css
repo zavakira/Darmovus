@@ -155,3 +155,5 @@
 .icon--cart           { --icon: url("../images/icons/cart.svg"); }
 .icon--arrow-up-right { --icon: url("../images/icons/arrow-upright.svg"); }
 .icon--arrow-down     { --icon: url("../images/icons/arrow-down.svg"); }
+.icon--carret-left  { --icon: url("../images/icons/carret-left.svg"); }
+.icon--carret-right { --icon: url("../images/icons/carret-right.svg"); }

@@ -1,0 +1,176 @@
+/* =========================================================
+   SCENE — hero → «Ідеальна база» на скролі
+   ========================================================= */
+.scene {
+    --stage-h: 100svh;
+    --v: calc(var(--stage-h) / 900);
+    --hero-h: calc(var(--stage-h) - var(--header-h));
+    --hero-pb: calc(64 * var(--u));
+
+    /* ці значення пише JS */
+    --out: 0;
+    --zoom: 0;
+    --appear: 0;
+    --cover: 0;
+    --zoom-s: 1;
+    --zoom-y: 0px;
+
+    position: relative;
+    height: 500svh;
+}
+
+/* куди веде пункт меню «Що в наборі»: кінець анімації */
+.scene__anchor {
+    position: absolute;
+    top: 255svh;
+}
+
+.scene__stage {
+    position: sticky;
+    top: 0;
+    height: var(--stage-h);
+    overflow: hidden;
+    /* коли наїжджає наступна секція: трохи зменшується й темнішає */
+    transform-origin: 50% 0;
+    scale: calc(1 - .05 * var(--cover));
+    opacity: calc(1 - var(--cover)* 2);
+}
+
+/* --- Дармовис --- */
+.scene__product {
+    position: absolute;
+    top: calc(24 * var(--u));
+    left: var(--product-shift, 0px);
+    right: calc(var(--product-shift, 0px) * -1);
+    z-index: 2;
+    width: fit-content;
+    height: calc(var(--hero-h) - 24 * var(--u) - var(--hero-pb));
+    margin-inline: auto;
+    transform-origin: 50% 0;
+    transform: translateY(calc(var(--zoom-y) * var(--zoom))) scale(calc(1 + (var(--zoom-s) - 1) * var(--zoom)));
+    will-change: transform;
+    --product-shift: 35px;
+}
+
+.scene__img {
+    width: auto;
+    max-width: none;
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Кінцеве положення дармовиса, як на макеті. Міняй тут. */
+.scene__target {
+    position: absolute;
+    top: calc(-301 * var(--v));
+    left: 50%;
+    width: 0;
+    height: calc(1101 * var(--v));
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* =========================================================
+   COVER — секції, що наїжджають на сцену
+   ========================================================= */
+.cover {
+    position: relative;
+    z-index: 2;
+    margin-top: -100svh;
+    background: var(--c-bg);
+    /*box-shadow: 0 -16px 40px rgba(18, 20, 28, .18);*/
+    clip-path: inset(-80px 0 0 0);
+}
+
+/* --- Блок «Ідеальна база» --- */
+.base {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.base__inner {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-cols), minmax(0, 1fr));
+    column-gap: var(--grid-gutter);
+    height: 100%;
+}
+
+.base__inner>* {
+    grid-row: 1;
+    align-self: start;
+}
+
+.base__title {
+    grid-column: 1 / span 5;
+    margin: calc(80 * var(--v)) 0 0;
+    font-size: max(calc(32 * var(--u)), 24px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.06em;
+    text-transform: uppercase;
+    color: var(--c-ink);
+    opacity: var(--appear);
+    translate: 0 calc((1 - var(--appear)) * 24px);
+}
+
+.callout {
+    margin-top: var(--top);
+    padding: var(--space-m);
+    border: 1px solid var(--c-ink);
+    background: var(--c-bg);
+    color: var(--c-ink);
+    opacity: 0;
+    translate: 0 16px;
+    transition: opacity .4s ease, translate .4s ease;
+}
+
+.callout.is-visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+.scene:not(.is-base) .callout {
+    opacity: 0;
+}
+
+.callout__title {
+    margin: 0 0 var(--space-xs);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.callout__text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* позиції: колонки сітки + відступ зверху з макета */
+.callout--cord {
+    grid-column: 7 / span 2;
+    --top: calc(80 * var(--v));
+}
+
+.callout--skate {
+    grid-column: 2 / span 2;
+    --top: calc(272 * var(--v));
+}
+
+.callout--ring {
+    grid-column: 8 / span 2;
+    --top: calc(328 * var(--v));
+}
+
+.callout--ice {
+    grid-column: 2 / span 2;
+    --top: calc(564 * var(--v));
+}
+
+.callout--star {
+    grid-column: 9 / span 2;
+    --top: calc(656 * var(--v));
+}

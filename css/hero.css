@@ -1,6 +1,15 @@
 .hero {
-  position: relative;
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 1;
+  height: var(--hero-h);
   overflow: hidden;
+  translate: 0 calc(var(--out) * -25%);
+  opacity: calc(1 - var(--out));
+}
+
+.scene.is-base .hero {
+  pointer-events: none;
 }
 
 .hero__inner {
@@ -11,8 +20,8 @@
   grid-template-rows: auto 1fr auto;
   column-gap: var(--grid-gutter);
   padding-top: calc(40 * var(--u));
-  min-height: min(calc(880 * var(--u)), calc(100svh - var(--header-h)));
-  padding-bottom: calc(64 * var(--u));
+  height: 100%;
+  padding-bottom: var(--hero-pb);
 }
 
 /* --- Заголовок: від margin до margin, гачок рівно по центру --- */
@@ -35,10 +44,17 @@
   color: var(--c-ink);
 }
 
-.hero__title-part:first-child { justify-self: start; }
-.hero__title-part:last-child  { justify-self: end; }
+.hero__title-part:first-child {
+  justify-self: start;
+}
 
-.hero__title-hook { width: 8.75cqi; }
+.hero__title-part:last-child {
+  justify-self: end;
+}
+
+.hero__title-hook {
+  width: 8.75cqi;
+}
 
 /* --- Текст: перші 2 колонки --- */
 .hero__about {
@@ -46,7 +62,8 @@
   grid-row: 2;
   align-self: start;
   display: grid;
-  gap: var(--space-m);   /* 24 */
+  gap: var(--space-m);
+  /* 24 */
   margin-top: calc(80 * var(--u));
   font-size: 12px;
   line-height: 16px;
@@ -54,21 +71,14 @@
   text-transform: uppercase;
 }
 
-.hero__about p { margin: 0; }
-.hero__about p + p { max-width: 14em; }
-
-/* --- Фото: центр сторінки = середина gutter між 5 і 6 колонкою --- */
-.hero__product {
-  position: absolute;
-  top: calc(1 * var(--u));
-  left: 52%;
-  z-index: 2;
-  width: auto;
-  height: calc(770 * var(--u));
-  translate: calc(-50% + var(--product-shift, 0px)) 0;
-  pointer-events: none;
-  user-select: none;
+.hero__about p {
+  margin: 0;
 }
+
+.hero__about p+p {
+  max-width: 14em;
+}
+
 
 /* --- Нижній ряд: кнопки по краях сітки --- */
 .hero__buy {

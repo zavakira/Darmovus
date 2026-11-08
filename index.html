@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,14 +15,20 @@
   <link rel="stylesheet" href="css/buttons.css">
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/info.css">
+  <link rel="stylesheet" href="css/marquee.css">
+  <link rel="stylesheet" href="css/builder.css">
+  <link rel="stylesheet" href="css/review.css">
+  <link rel="stylesheet" href="css/questions.css">
 </head>
+
 <body>
 
   <!-- ===== HEADER ===== -->
   <header class="header">
     <div class="container header__inner">
       <a href="#" class="header__logo" aria-label="Забагато — на головну">
-        <img src="images/logo.svg" alt="" width="150" height="24">
+        <img src="images/card-logo.png" alt="" width="150" height="24">
       </a>
 
       <nav class="nav" aria-label="Основна навігація">
@@ -41,46 +48,296 @@
   </header>
 
   <main>
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-      <div class="container hero__inner">
+    <div class="scene" data-scene>
+      <span class="scene__anchor" id="set"></span>
 
-        <h1 class="hero__title">
-          <span class="hero__title-part">Чим більше</span>
-          <span class="hero__title-hook" aria-hidden="true"></span>
-          <span class="hero__title-part">тим краще</span>
-        </h1>
+      <div class="scene__stage">
 
-        <div class="hero__about">
-          <p>«Забагато» — це дармовиси для тих, кому одного завжди мало. Металеві зірки, крижані кубики, скейти, перламутрові серця — чіпляй їх на ключі, сумку чи рюкзак і додавай нові, коли захочеш. Ми не віримо в «достатньо». Ми віримо в «ще один».</p>
-          <p>Речі, які ти носиш щодня, розповідають про тебе ще до того, як ти щось скажеш. Дармовис — найменший спосіб заявити про себе голосно.</p>
+        <!-- ===== HERO ===== -->
+        <section class="hero" aria-label="Головна">
+          <div class="container hero__inner">
+
+            <h1 class="hero__title">
+              <span class="hero__title-part">Чим більше</span>
+              <span class="hero__title-hook" aria-hidden="true"></span>
+              <span class="hero__title-part">тим краще</span>
+            </h1>
+
+            <div class="hero__about">
+              <p>«Забагато» — це дармовиси для тих, кому одного завжди мало. Металеві зірки, крижані кубики, скейти,
+                перламутрові серця — чіпляй їх на ключі, сумку чи рюкзак і додавай нові, коли захочеш. Ми не віримо в
+                «достатньо». Ми віримо в «ще один».</p>
+              <p>Речі, які ти носиш щодня, розповідають про тебе ще до того, як ти щось скажеш. Дармовис — найменший
+                спосіб заявити про себе голосно.</p>
+            </div>
+
+            <button type="button" class="btn btn--cut hero__buy">
+              <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+              <span>Хочу цей - 365&nbsp;₴</span>
+            </button>
+
+            <div class="hero__build">
+              <img class="hero__charms" src="images/hero-charms.png"
+                alt="Чарми: перламутрове серце й металевий жетон Design" width="244" height="202">
+
+              <a href="#builder" class="btn btn--metal">
+                <span>Зберу свій</span>
+                <span class="icon icon--arrow-down" aria-hidden="true"></span>
+              </a>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ===== ДАРМОВИС (один на обидва блоки) ===== -->
+        <div class="scene__product" data-scene-product>
+          <img class="scene__img" src="images/hero-keychain.png"
+            alt="Дармовис на гачку: плетений шнур, кільце з карабінами, міні скейт, кубики льоду та металева зірка"
+            width="418" height="978">
         </div>
 
-        <img class="hero__product"
-             src="images/hero-keychain.png"
-             alt="Дармовис на гачку: скейт, крижані кубики та металева зірка на карабіні"
-             width="418" height="978">
+        <!-- куди «приїжджає» дармовис: невидима рамка -->
+        <div class="scene__target" data-scene-target aria-hidden="true"></div>
 
-        <button type="button" class="btn btn--cut hero__buy">
-          <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
-          <span>Хочу цей - 365&nbsp;₴</span>
-        </button>
+        <!-- ===== ІДЕАЛЬНА БАЗА ===== -->
+        <section class="base" aria-labelledby="base-title">
+          <div class="container base__inner">
+            <h2 class="base__title" id="base-title">Ця [ ідеальна ] база</h2>
 
-        <div class="hero__build">
-          <img class="hero__charms"
-               src="images/hero-charms.png"
-               alt="Чарми: перламутрове серце й металевий жетон Design"
-               width="244" height="202">
+            <div class="callout callout--cord" data-part="cord" id="callout-cord">
+              <h3 class="callout__title">[ плетений шнур ]</h3>
+              <p class="callout__text">Щільне чорно-біле плетіння, яке тримає форму.</p>
+            </div>
 
-          <a href="#builder" class="btn btn--metal">
-            <span>Зберу свій</span>
-            <span class="icon icon--arrow-down" aria-hidden="true"></span>
-          </a>
+            <div class="callout callout--skate" data-part="skate" id="callout-skate">
+              <h3 class="callout__title">[ міні скейт ]</h3>
+              <p class="callout__text">Якщо ви в дитинстві мріяли про фінгер скейт - то ось він!</p>
+            </div>
+
+            <div class="callout callout--ring" data-part="ring" id="callout-ring">
+              <h3 class="callout__title">[ кільце та 2&nbsp;карабіни ]</h3>
+              <p class="callout__text">Чіпляється на сумку, ремінь чи ключі за секунду.</p>
+            </div>
+
+            <div class="callout callout--ice" data-part="ice" id="callout-ice">
+              <h3 class="callout__title">[ кубики льоду ]</h3>
+              <p class="callout__text">Прозорий акрил, що ловить світло.</p>
+            </div>
+
+            <div class="callout callout--star" data-part="star" id="callout-star">
+              <h3 class="callout__title">[ металева зірка ]</h3>
+              <p class="callout__text">Зірочка палай.</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+    <div class="cover">
+      <!-- ===== КОНСТРУКТОР ===== -->
+      <section class="builder" id="builder" aria-labelledby="builder-title" data-builder>
+        <div class="container builder__inner">
+
+          <div class="builder__panel">
+            <h2 class="builder__title" id="builder-title">Збери свій дармовис</h2>
+            <p class="builder__lead">покрути кільця, як стійку в магазині.<br>деталь, що висить спереду, можна додати
+              до
+              дармовиса.</p>
+
+            <div class="ring" data-ring="top">
+              <div class="ring__head">
+                <p class="ring__label">Верхнє кільце</p>
+                <div class="ring__nav">
+                  <button type="button" class="ring__arrow" data-dir="-1"
+                    aria-label="Попередній чарм на верхньому кільці">
+                    <span class="icon icon--carret-left" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="ring__arrow" data-dir="1"
+                    aria-label="Наступний чарм на верхньому кільці">
+                    <span class="icon icon--carret-right" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+              <div class="ring__info" aria-live="polite">
+                <p class="ring__name" data-ring-name></p>
+                <p class="ring__price" data-ring-price></p>
+              </div>
+              <button type="button" class="btn-outline ring__add" data-ring-add>Додати до дармовиса</button>
+            </div>
+
+            <div class="ring" data-ring="bottom">
+              <div class="ring__head">
+                <p class="ring__label">Нижнє кільце</p>
+                <div class="ring__nav">
+                  <button type="button" class="ring__arrow" data-dir="-1"
+                    aria-label="Попередній чарм на нижньому кільці">
+                    <span class="icon icon--carret-left" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="ring__arrow" data-dir="1" aria-label="Наступний чарм на нижньому кільці">
+                    <span class="icon icon--carret-right" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+              <div class="ring__info" aria-live="polite">
+                <p class="ring__name" data-ring-name></p>
+                <p class="ring__price" data-ring-price></p>
+              </div>
+              <button type="button" class="btn-outline ring__add" data-ring-add>Додати до дармовиса</button>
+            </div>
+
+            <div class="summary">
+              <h3 class="summary__title">Твій дармовис</h3>
+              <ul class="summary__lines" data-summary-lines></ul>
+              <div class="summary__total">
+                <span>Разом</span>
+                <span class="summary__sum" data-summary-total></span>
+              </div>
+              <button type="button" class="btn-pill summary__order">Оформити замовлення</button>
+            </div>
+          </div>
+
+          <div class="builder__stage">
+            <canvas class="builder__canvas" data-builder-canvas role="img"
+              aria-label="Обертова стійка з картками чармів. Потягни кільце, щоб покрутити"></canvas>
+          </div>
+
         </div>
+      </section>
+      <section class="marquee">
+        <div class="marquee__track">
+          <p class="marquee__group">Не просто дармовис / Це ти, тільки голосніше / Жодного «забагато» / Додай ще один
+            /
+          </p>
+          <p class="marquee__group" aria-hidden="true">Не просто дармовис / Це ти, тільки голосніше / Жодного
+            «забагато»
+            /
+            Додай ще один /</p>
+          <p class="marquee__group" aria-hidden="true">Не просто дармовис / Це ти, тільки голосніше / Жодного
+            «забагато»
+            /
+            Додай ще один /</p>
+          <p class="marquee__group" aria-hidden="true">Не просто дармовис / Це ти, тільки голосніше / Жодного
+            «забагато»
+            /
+            Додай ще один /</p>
+        </div>
+      </section>
+    </div>
 
+    <!-- ===== ВІДГУКИ ===== -->
+    <div class="board">
+      <div class="board__bg" aria-hidden="true">
+        <div class="board__metal"></div>
+      </div>
+
+      <ul class="board__list">
+
+        <li class="note" style="--rotate: 7deg; --shift: 16;">
+          <div class="note__pin">
+            <span class="note__magnet" aria-hidden="true"></span>
+            <figure class="note__card">
+              <img class="note__photo" src="images/review1.png" alt="[Опис фото]" width="705" height="705"
+                loading="lazy">
+              <figcaption class="note__body">
+                <blockquote class="note__text">
+                  <p>Брелок просто вогонь, а деталі неймовірні. Такий y2k-вайб.</p>
+                </blockquote>
+                <p class="note__author">Марʼяна</p>
+              </figcaption>
+            </figure>
+          </div>
+        </li>
+
+        <li class="note" style="--rotate: -2deg; --shift: 160;">
+          <div class="note__pin">
+            <span class="note__magnet" aria-hidden="true"></span>
+            <figure class="note__card">
+              <img class="note__photo" src="images/review2.png" style="--photo-y: 1%;" alt="[Опис фото]" width="705"
+                height="705" loading="lazy">
+              <figcaption class="note__body">
+                <blockquote class="note__text">
+                  <p>Якість крута, вживу навіть краще, ніж на фото. Кольори ідеальні.</p>
+                </blockquote>
+                <p class="note__author">viskitty</p>
+              </figcaption>
+            </figure>
+          </div>
+        </li>
+
+        <li class="note" style="--rotate: -7deg; --shift: 0;">
+          <div class="note__pin">
+            <span class="note__magnet" aria-hidden="true"></span>
+            <figure class="note__card">
+              <img class="note__photo" src="images/review3.png" alt="[Опис фото]" width="705" height="705"
+                loading="lazy">
+              <figcaption class="note__body">
+                <blockquote class="note__text">
+                  <p>Такий милий і незвичайний! Щоразу дивлюся на нього й усміхаюсь. Найкраща покупка.</p>
+                </blockquote>
+                <p class="note__author">Віталій Хром</p>
+              </figcaption>
+            </figure>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <!-- ===== ПИТАННЯ ===== -->
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div class="container faq__inner">
+        <h2 class="faq__title" id="faq-title">Питання</h2>
+
+        <div class="faq__list">
+          <details class="faq__item" name="faq">
+            <summary class="faq__question">Скільки йде доставка?</summary>
+            <div class="faq__answer">
+              <p>Відправляємо Новою поштою протягом 1–2 робочих днів після оформлення замовлення. Доставка по Україні
+                зазвичай займає 1–3 дні. Щойно посилка вирушить, ми надішлемо вам ТТН, щоб ви могли відстежувати її в
+                застосунку.</p>
+            </div>
+          </details>
+
+          <details class="faq__item" name="faq">
+            <summary class="faq__question">З чого зроблений дармовис?</summary>
+            <div class="faq__answer">
+              <p>Металеві деталі (карабін, кільця, ланцюжки, зірка, монетка) виготовлені зі сплаву з гальванічним
+                покриттям, яке не темніє і не залишає слідів на руках. «Крижинки» зроблені з прозорої смоли, серце має
+                перламутрове покриття, а шнурок сплетений із міцного паракорду. Дармовис витримує щоденне носіння на
+                ключах, сумці чи рюкзаку.</p>
+            </div>
+          </details>
+
+          <details class="faq__item" name="faq">
+            <summary class="faq__question">Можна докупити чарми пізніше?</summary>
+            <div class="faq__answer">
+              <p>Так, і ми навіть на це розраховуємо. Усі підвіски продаються окремо в розділі «Зібрати свій» і
+                кріпляться до будь-якого нашого набору без інструментів. Почніть з основи й додавайте новий чарм щоразу,
+                коли захочеться. Пам’ятайте: забагато не буває.</p>
+            </div>
+          </details>
+
+          <details class="faq__item" name="faq">
+            <summary class="faq__question">Як повернути чи обміняти?</summary>
+            <div class="faq__answer">
+              <p>Ви можете повернути або обміняти товар протягом 14 днів після отримання, якщо він не був у використанні
+                й зберіг вигляд та упаковку. Напишіть нам у Instagram або на пошту, і ми надішлемо інструкцію. Якщо щось
+                прийшло пошкодженим, витрати на доставку для обміну беремо на себе.</p>
+            </div>
+          </details>
+        </div>
       </div>
     </section>
   </main>
-
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+</script>
+  <script src="js/main.js" defer></script>
+  <script type="module" src="js/builder.js"></script>
 </body>
+
 </html>
