@@ -25,18 +25,48 @@
   --space-4xl: 128px;
 
   --c-bg: #e9eaef;
-  --c-ink: #231f1f;
+  --c-ink: #171d2f;
   --c-text: #1b1b1d;
   --c-header: #06070b;
   --c-white: #ffffff;
-  --c-accent: #6b75dd;
-  --c-muted: #6c6d75;
-  --c-line: #c9cad1;
-  --c-order: #6670b5;
+  --c-accent: var(--blue-600);
+  --c-muted: #636b7e;
+  --c-line: #c6ccd9;
+  --c-order: var(--c-primary);
 
   --font: "Arimo", Arial, sans-serif;
 
   --header-h: 72px;
+
+  /* палітра: відтінки #0C3CCD */
+  --blue-50: #E9F6FF;
+  --blue-100: #D6EFFF;
+  --blue-200: #B6DFFF;
+  --blue-300: #8AC6FF;
+  --blue-400: #5BA0FF;
+  --blue-500: #3679FF;
+  --blue-600: #144FFF;
+  --blue-700: #0A42F8;
+  --blue-800: #0C3CCD;
+  --blue-900: #14399B;
+  --blue-950: #0C1F5A;
+
+  /* ролі кольорів */
+  --c-primary: var(--blue-800);
+  --c-primary-hover: var(--blue-700);
+  --c-primary-active: var(--blue-900);
+
+  /* фон hero: зверху темніше, посередині блакитний, знизу колір сторінки */
+  --c-hero-top: #d3d7e0;
+  --c-hero-mid: #dfe6f2;
+  --c-nav: #6f798f;
+
+  /* зрізані кути — однакові на всьому сайті */
+  --cut: 8px;
+  --cut-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0,
+      100% var(--cut), 100% calc(100% - var(--cut)),
+      calc(100% - var(--cut)) 100%, var(--cut) 100%,
+      0 calc(100% - var(--cut)), 0 var(--cut));
 }
 
 /* =========================================================
@@ -50,6 +80,10 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+}
+
+html {
+  scroll-padding-top: var(--header-h);
 }
 
 body {

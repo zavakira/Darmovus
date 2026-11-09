@@ -9,6 +9,7 @@
   const target = scene.querySelector('[data-scene-target]');
   // описи в тому порядку, як вони стоять у HTML
   const callouts = [...scene.querySelectorAll('.callout')];
+  const header = document.querySelector('.header');
 
   const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v));
   const range = (p, start, end) => clamp((p - start) / (end - start));
@@ -27,9 +28,11 @@
 
   function update() {
     // останній екран сцени — на нього наїжджає наступна секція
-    const coverLength = window.innerHeight;
-    const distance = scene.offsetHeight - window.innerHeight - coverLength;
-    const scrolled = -scene.getBoundingClientRect().top;
+    const headerH = header ? header.offsetHeight : 0;
+    const stageH = window.innerHeight - headerH;   // висота сцени під хедером
+    const coverLength = stageH;
+    const distance = scene.offsetHeight - stageH - coverLength;
+    const scrolled = headerH - scene.getBoundingClientRect().top;
     const p = clamp(scrolled / distance);
 
     // 0 → 1, поки наступна секція наїжджає
@@ -99,9 +102,11 @@
 
   // ключові точки: кінець сцени та «конструктор нагорі»
   function points() {
-    const coverLength = window.innerHeight;
-    const distance = scene.offsetHeight - window.innerHeight - coverLength;
-    const scrolled = -scene.getBoundingClientRect().top;
+    const headerH = header ? header.offsetHeight : 0;
+    const stageH = window.innerHeight - headerH;
+    const coverLength = stageH;
+    const distance = scene.offsetHeight - stageH - coverLength;
+    const scrolled = headerH - scene.getBoundingClientRect().top;
     const sceneTop = window.scrollY - scrolled;
     return {
       cover: (scrolled - distance) / coverLength,

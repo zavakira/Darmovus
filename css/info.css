@@ -2,9 +2,9 @@
    SCENE — hero → «Ідеальна база» на скролі
    ========================================================= */
 .scene {
-    --stage-h: 100svh;
+    --stage-h: calc(100svh - var(--header-h));
     --v: calc(var(--stage-h) / 900);
-    --hero-h: calc(var(--stage-h) - var(--header-h));
+    --hero-h: var(--stage-h);
     --hero-pb: calc(64 * var(--u));
 
     /* ці значення пише JS */
@@ -27,7 +27,7 @@
 
 .scene__stage {
     position: sticky;
-    top: 0;
+    top: var(--header-h);
     height: var(--stage-h);
     overflow: hidden;
     /* коли наїжджає наступна секція: трохи зменшується й темнішає */
@@ -77,7 +77,7 @@
 .cover {
     position: relative;
     z-index: 2;
-    margin-top: -100svh;
+    margin-top: calc(var(--header-h) - 100svh);
     background: var(--c-bg);
     /*box-shadow: 0 -16px 40px rgba(18, 20, 28, .18);*/
     clip-path: inset(-80px 0 0 0);
@@ -137,16 +137,25 @@
 }
 
 .callout__title {
-    margin: 0 0 var(--space-xs);
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 24px;
+  margin: 0 0 var(--space-xs);
+  font-size: 20px;      /* розмір */
+  font-weight: 500;     /* накреслення: 400 звичайне … 700 жирне */
+  line-height: 22px;
+  text-wrap: balance;
+}
+
+.callout__title::before {
+    content: "[\00a0";
+}
+
+.callout__title::after {
+    content: "\00a0]";
 }
 
 .callout__text {
     margin: 0;
     font-size: 14px;
-    line-height: 20px;
+    line-height: 16px;
 }
 
 /* позиції: колонки сітки + відступ зверху з макета */

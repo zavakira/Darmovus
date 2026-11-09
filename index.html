@@ -16,11 +16,14 @@
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/hero.css">
   <link rel="stylesheet" href="css/info.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <link rel="stylesheet" href="css/cut.css">
   <link rel="stylesheet" href="css/marquee.css">
   <link rel="stylesheet" href="css/builder.css">
   <link rel="stylesheet" href="css/review.css">
   <link rel="stylesheet" href="css/questions.css">
   <link rel="stylesheet" href="css/footer.css">
+
 </head>
 
 <body>
@@ -41,7 +44,7 @@
         </ul>
       </nav>
 
-      <a href="#cart" class="header__cart">
+      <a href="#cart" class="header__cart" data-cart-open>
         <span class="icon icon--cart header__cart-icon" aria-hidden="true"></span>
         <span>Кошик</span>
       </a>
@@ -63,29 +66,12 @@
               <span class="hero__title-hook" aria-hidden="true"></span>
               <span class="hero__title-part">тим краще</span>
             </h1>
+            <p class="hero__about">«Забагато» — це дармовиси для<br>тих, кому одного завжди мало.</p>
 
-            <div class="hero__about">
-              <p>«Забагато» — це дармовиси для тих, кому одного завжди мало. <!-- Металеві зірки, крижані кубики, скейти,
-                перламутрові серця — чіпляй їх на ключі, сумку чи рюкзак і додавай нові, коли захочеш. Ми не віримо в
-                «достатньо». Ми віримо в «ще один».</p>
-              <p>Речі, які ти носиш щодня, розповідають про тебе ще до того, як ти щось скажеш. Дармовис — найменший
-                спосіб заявити про себе голосно.</p> -->
-            </div>
-
-            <button type="button" class="btn btn--cut hero__buy">
+            <button type="button" class="btn btn--cut hero__buy" data-cart-buy>
               <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
               <span>Хочу цей - 365&nbsp;₴</span>
             </button>
-
-            <div class="hero__build">
-              <img class="hero__charms" src="images/hero-charms.png"
-                alt="Чарми: перламутрове серце й металевий жетон Design" width="244" height="202">
-
-              <a href="#builder" class="btn btn--metal">
-                <span>Зберу свій</span>
-                <span class="icon icon--arrow-down" aria-hidden="true"></span>
-              </a>
-            </div>
 
           </div>
         </section>
@@ -106,27 +92,27 @@
             <h2 class="base__title" id="base-title">Ця [ ідеальна ] база</h2>
 
             <div class="callout callout--cord" data-part="cord" id="callout-cord">
-              <h3 class="callout__title">[ плетений шнур ]</h3>
+              <h3 class="callout__title">плетений шнур</h3>
               <p class="callout__text">Щільне чорно-біле плетіння, яке тримає форму.</p>
             </div>
 
             <div class="callout callout--skate" data-part="skate" id="callout-skate">
-              <h3 class="callout__title">[ міні скейт ]</h3>
+              <h3 class="callout__title">міні скейт</h3>
               <p class="callout__text">Якщо ви в дитинстві мріяли про фінгер скейт - то ось він!</p>
             </div>
 
             <div class="callout callout--ring" data-part="ring" id="callout-ring">
-              <h3 class="callout__title">[ кільце та 2&nbsp;карабіни ]</h3>
+              <h3 class="callout__title">кільце та 2&nbsp;карабіни</h3>
               <p class="callout__text">Чіпляється на сумку, ремінь чи ключі за секунду.</p>
             </div>
 
             <div class="callout callout--ice" data-part="ice" id="callout-ice">
-              <h3 class="callout__title">[ кубики льоду ]</h3>
+              <h3 class="callout__title">кубики льоду</h3>
               <p class="callout__text">Прозорий акрил, що ловить світло.</p>
             </div>
 
             <div class="callout callout--star" data-part="star" id="callout-star">
-              <h3 class="callout__title">[ металева зірка ]</h3>
+              <h3 class="callout__title">металева зірка</h3>
               <p class="callout__text">Зірочка палай.</p>
             </div>
           </div>
@@ -193,7 +179,7 @@
                 <span>Разом</span>
                 <span class="summary__sum" data-summary-total></span>
               </div>
-              <button type="button" class="btn-pill summary__order">Оформити замовлення</button>
+              <button type="button" class="btn-pill summary__order" data-cart-checkout>Оформити замовлення</button>
             </div>
           </div>
 
@@ -359,6 +345,229 @@
 
       </div>
     </footer>
+    <!-- ===== ОФОРМЛЕННЯ ЗАМОВЛЕННЯ ===== -->
+    <dialog class="checkout" data-checkout aria-labelledby="checkout-title">
+      <div class="checkout__panel">
+
+        <header class="checkout__head" data-checkout-head>
+          <div class="checkout__bar">
+            <button type="button" class="checkout__icon-btn" data-checkout-back aria-label="Назад" hidden>
+              <span class="icon icon--carret-left" aria-hidden="true"></span>
+            </button>
+            <h2 class="checkout__title" id="checkout-title" data-checkout-title>Кошик</h2>
+            <button type="button" class="checkout__icon-btn" data-checkout-close aria-label="Закрити">
+              <span class="checkout__cross" aria-hidden="true"></span>
+            </button>
+          </div>
+          <ol class="checkout__progress">
+            <li data-progress>1 Кошик</li>
+            <li data-progress>2 Доставка</li>
+            <li data-progress>3 Оплата</li>
+          </ol>
+        </header>
+
+        <!-- 1. Кошик -->
+        <section class="checkout__step" data-step="cart">
+          <div class="checkout__body">
+            <div class="cart-empty" data-cart-empty hidden>
+              <p class="cart-empty__text">Кошик поки порожній.</p>
+              <a class="checkout__link" href="#builder" data-checkout-close>Зібрати свій дармовис</a>
+            </div>
+
+            <div data-cart-filled>
+              <div class="cart-item" data-cart-product>
+                <img class="cart-item__image" data-product-image alt="" width="96" height="96">
+                <div class="cart-item__info">
+                  <div class="cart-item__row">
+                    <p class="cart-item__name" data-product-name></p>
+                    <p class="cart-item__price" data-product-price></p>
+                  </div>
+                  <p class="cart-item__note" data-product-note></p>
+                  <div class="qty" role="group" aria-label="Кількість">
+                    <button type="button" class="qty__btn" data-qty-minus aria-label="Менше">−</button>
+                    <span class="qty__value" data-qty-value aria-live="polite">1</span>
+                    <button type="button" class="qty__btn" data-qty-plus aria-label="Більше">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-charms" data-cart-charms-block>
+                <p class="checkout__label">Додаткові чарми</p>
+                <ul class="cart-charms__list" data-cart-charms></ul>
+              </div>
+
+              <a class="checkout__link cart-change" href="#builder" data-checkout-close>Змінити набір чармів</a>
+            </div>
+          </div>
+
+          <div class="checkout__footer" data-cart-footer>
+            <dl class="checkout__sum">
+              <div>
+                <dt>Товари</dt>
+                <dd data-cart-total></dd>
+              </div>
+              <div>
+                <dt>Доставка</dt>
+                <dd>за тарифами Нової пошти</dd>
+              </div>
+              <div class="checkout__sum-total">
+                <dt>Разом</dt>
+                <dd data-cart-total></dd>
+              </div>
+            </dl>
+            <button type="button" class="checkout__primary" data-go-delivery>Оформити замовлення</button>
+            <button type="button" class="checkout__link checkout__continue" data-checkout-close>Продовжити
+              покупки</button>
+          </div>
+        </section>
+
+        <!-- 2. Доставка -->
+        <section class="checkout__step" data-step="delivery" hidden>
+          <form class="checkout__body" data-delivery-form>
+            <fieldset class="checkout__group">
+              <legend class="checkout__label">Отримувач</legend>
+              <div class="field-row">
+                <label class="field">
+                  <span class="field__label">Ім'я</span>
+                  <input class="field__input" name="firstName" autocomplete="given-name" required>
+                </label>
+                <label class="field">
+                  <span class="field__label">Прізвище</span>
+                  <input class="field__input" name="lastName" autocomplete="family-name" required>
+                </label>
+              </div>
+              <label class="field">
+                <span class="field__label">Телефон</span>
+                <input class="field__input" name="phone" type="tel" inputmode="tel" autocomplete="tel"
+                  placeholder="+380" required pattern="(\+?38)?[\s\-]*0([\s\-]*\d){9}"
+                  title="Наприклад, +380 67 123 45 67" aria-describedby="phone-hint">
+              </label>
+              <p class="field__hint" id="phone-hint">Для SMS з номером ТТН</p>
+              <label class="field">
+                <span class="field__label">Email (необов'язково)</span>
+                <input class="field__input" name="email" type="email" autocomplete="email">
+              </label>
+            </fieldset>
+
+            <fieldset class="checkout__group">
+              <legend class="checkout__label">Нова пошта</legend>
+              <div class="choice-row">
+                <label class="choice"><input type="radio" name="deliveryType" value="branch" checked> Відділення</label>
+                <label class="choice"><input type="radio" name="deliveryType" value="locker"> Поштомат</label>
+              </div>
+              <label class="field">
+                <span class="field__label">Місто</span>
+                <input class="field__input" name="city" autocomplete="address-level2"
+                  placeholder="Почніть вводити назву" required>
+              </label>
+              <label class="field">
+                <span class="field__label" data-branch-label>Відділення</span>
+                <input class="field__input" name="branch" data-branch-input placeholder="Номер відділення" required>
+              </label>
+            </fieldset>
+          </form>
+
+          <div class="checkout__footer">
+            <dl class="checkout__sum">
+              <div class="checkout__sum-total">
+                <dt>Разом</dt>
+                <dd data-cart-total></dd>
+              </div>
+            </dl>
+            <button type="button" class="checkout__primary" data-go-payment>До оплати</button>
+          </div>
+        </section>
+
+        <!-- 3. Оплата -->
+        <section class="checkout__step" data-step="payment" hidden>
+          <form class="checkout__body" data-payment-form>
+            <div class="order-summary">
+              <div>
+                <p data-summary-person></p>
+                <p data-summary-address></p>
+              </div>
+              <button type="button" class="checkout__link" data-edit-delivery>Змінити</button>
+            </div>
+
+            <div class="wallets">
+              <button type="button" class="wallet" data-wallet="apple-pay">Apple Pay</button>
+              <button type="button" class="wallet" data-wallet="google-pay">Google Pay</button>
+            </div>
+
+            <p class="divider">або</p>
+
+            <div class="pay-option">
+              <label class="pay-option__head">
+                <input type="radio" name="payMethod" value="card" checked> Карткою онлайн
+              </label>
+              <div class="pay-option__fields">
+                <label class="field">
+                  <span class="field__label">Номер картки</span>
+                  <input class="field__input" data-card-field data-card-number inputmode="numeric"
+                    autocomplete="cc-number" placeholder="0000 0000 0000 0000" pattern="(\d{4} ){3}\d{4}"
+                    title="16 цифр картки">
+                </label>
+                <div class="field-row">
+                  <label class="field">
+                    <span class="field__label">Термін дії</span>
+                    <input class="field__input" data-card-field data-card-exp inputmode="numeric" autocomplete="cc-exp"
+                      placeholder="ММ/РР" pattern="(0[1-9]|1[0-2])/\d{2}" title="Наприклад, 08/28">
+                  </label>
+                  <label class="field">
+                    <span class="field__label">CVV</span>
+                    <input class="field__input" data-card-field data-card-cvv inputmode="numeric" autocomplete="cc-csc"
+                      pattern="\d{3}" title="3 цифри зі звороту картки">
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="pay-option">
+              <label class="pay-option__head">
+                <input type="radio" name="payMethod" value="cod"> Накладений платіж
+              </label>
+              <p class="pay-option__hint">Оплата при отриманні, [комісія Нової пошти]</p>
+            </div>
+
+            <label class="agree">
+              <input type="checkbox" name="offer" required>
+              <span>Погоджуюсь з <a href="#" target="_blank" rel="noopener">публічною офертою</a></span>
+            </label>
+          </form>
+
+          <div class="checkout__footer">
+            <dl class="checkout__sum">
+              <div class="checkout__sum-total">
+                <dt>До сплати</dt>
+                <dd data-cart-total></dd>
+              </div>
+            </dl>
+            <button type="button" class="checkout__primary" data-place-order>
+              <span data-pay-label>Оплатити</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- 4. Дякуємо -->
+        <section class="checkout__step checkout__done" data-step="done" hidden>
+          <div class="checkout__body">
+            <span class="done__check" aria-hidden="true"></span>
+            <h2 class="done__title">Дякуємо! Тепер у тебе забагато</h2>
+            <p class="done__text">Замовлення <strong data-order-number></strong> прийняте.</p>
+            <ol class="done__steps">
+              <li>Збираємо дармовис: [терміни]</li>
+              <li>Надсилаємо SMS з номером ТТН</li>
+              <li>Забираєш у відділенні Нової пошти</li>
+            </ol>
+            <div class="done__actions">
+              <a class="checkout__dark" href="#" target="_blank" rel="noopener">Відміть нас в Instagram</a>
+              <button type="button" class="checkout__outline" data-checkout-close>Повернутися на сайт</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </dialog>
   </main>
   <script type="importmap">
   {
@@ -370,6 +579,7 @@
 </script>
   <script src="js/main.js" defer></script>
   <script type="module" src="js/builder.js"></script>
+  <script type="module" src="js/cart.js"></script>
 </body>
 
 </html>

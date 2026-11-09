@@ -1,3 +1,4 @@
+import { cart, PRODUCT } from './cart.js';
 let THREE; // Three.js підвантажується окремо, щоб ліва панель працювала навіть без 3D
 
 /* =========================================================
@@ -6,7 +7,7 @@ let THREE; // Three.js підвантажується окремо, щоб лі�
    ========================================================= */
 
 // Базовий дармовис, який завжди є в підсумку
-const BASE = { name: 'Дармовис «Диявол у деталях»', price: 365 };
+
 
 // Новий чарм = новий рядок. ring: 'top' — верхнє кільце, 'bottom' — нижнє
 const CHARMS = [
@@ -166,7 +167,7 @@ async function init() {
     const totalEl = section.querySelector('[data-summary-total]');
 
     /* ---------- стан ---------- */
-    const added = new Set();
+
     const tiers = ['top', 'bottom'].map((key) => ({
         key,
         charms: CHARMS.filter((c) => c.ring === key),
@@ -190,7 +191,7 @@ async function init() {
         t.ui.querySelector('[data-ring-name]').textContent = charm ? charm.name : 'Скоро тут будуть чарми';
         t.ui.querySelector('[data-ring-price]').textContent = charm ? formatPrice(charm.price) : '';
 
-        const isAdded = Boolean(charm && added.has(charm));
+        const isAdded = Boolean(charm && cart.hasCharm(charm));
         addBtn.disabled = !charm;
         addBtn.textContent = isAdded ? 'Прибрати з дармовиса' : 'Додати до дармовиса';
         addBtn.classList.toggle('is-added', isAdded);
@@ -200,7 +201,7 @@ async function init() {
         });
     }
 
-    function summaryLine(item, removable) {
+    function summaryLine(item, onRemove) {
         const li = document.createElement('li');
         li.className = 'summary__line';
 
@@ -216,13 +217,13 @@ async function init() {
         price.textContent = formatPrice(item.price);
         end.append(price);
 
-        if (removable) {
+        if (onRemove) {
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'summary__remove';
             btn.setAttribute('aria-label', `Прибрати «${item.name}»`);
             btn.textContent = '×';
-            btn.addEventListener('click', () => toggle(item));
+            btn.addEventListener('click', onRemove);
             end.append(btn);
         }
 
@@ -230,18 +231,34 @@ async function init() {
         return li;
     }
 
+    // рядок, коли дармовис прибрали: його можна повернути
+    function restoreLine() {
+        const li = document.createElement('li');
+        li.className = 'summary__line summary__line--muted';
+
+        const text = document.createElement('span');
+        text.textContent = 'Без дармовиса — лише чарми';
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'summary__restore';
+        btn.textContent = 'Повернути дармовис';
+        btn.addEventListener('click', () => cart.setBase(true));
+
+        li.append(text, btn);
+        return li;
+    }
+
     function renderSummary() {
-        const charms = CHARMS.filter((c) => added.has(c));
-        linesEl.replaceChildren(summaryLine(BASE, false), ...charms.map((c) => summaryLine(c, true)));
-        const total = charms.reduce((sum, c) => sum + c.price, BASE.price);
-        totalEl.textContent = formatPrice(total);
+        const first = cart.withBase
+            ? summaryLine(PRODUCT, () => cart.setBase(false))
+            : restoreLine();
+        linesEl.replaceChildren(first, ...cart.charms.map((c) => summaryLine(c, () => toggle(c))));
+        totalEl.textContent = formatPrice(cart.setPrice);
     }
 
     function toggle(charm) {
-        if (added.has(charm)) added.delete(charm);
-        else added.add(charm);
-        tiers.filter((t) => t.key === charm.ring).forEach(renderRing);
-        renderSummary();
+        cart.toggleCharm(charm);
     }
 
     function rotateBy(t, dir) {
@@ -261,6 +278,11 @@ async function init() {
         renderRing(t);
     });
     renderSummary();
+    // кошик змінився (тут або в панелі замовлення) — оновлюємо ліву частину
+    cart.subscribe(() => {
+        tiers.forEach(renderRing);
+        renderSummary();
+    });
 
     /* ---------- 3D ---------- */
     try {

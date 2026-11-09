@@ -10,7 +10,7 @@
   display: grid;
   grid-template-columns: repeat(var(--grid-cols), minmax(0, 1fr));
   column-gap: var(--grid-gutter);
-  
+
 }
 
 .builder__panel {
@@ -29,9 +29,9 @@
 }
 
 .builder__lead {
-  margin: var(--space-s) 0 0;
-  font-size: 16px;
-  line-height: 24px;
+  margin: var(--space-xs) 0 0;
+  font-size: 14px;
+  line-height: 16px;
   color: var(--c-muted);
 }
 
@@ -81,11 +81,19 @@
 }
 
 @media (hover: hover) {
-  .ring__arrow:hover:not(:disabled) { border-color: var(--c-ink); }
+  .ring__arrow:hover:not(:disabled) {
+    border-color: var(--c-ink);
+  }
 }
 
-.ring__arrow:active:not(:disabled) { transform: scale(.94); }
-.ring__arrow:disabled { opacity: .35; cursor: default; }
+.ring__arrow:active:not(:disabled) {
+  transform: scale(.94);
+}
+
+.ring__arrow:disabled {
+  opacity: .35;
+  cursor: default;
+}
 
 .ring__arrow:focus-visible {
   outline: 2px solid var(--c-accent);
@@ -118,7 +126,9 @@
   color: var(--c-muted);
 }
 
-.ring__add { margin-top: var(--space-s); }
+.ring__add {
+  margin-top: var(--space-s);
+}
 
 /* --- Кнопка з обводкою --- */
 .btn-outline {
@@ -126,7 +136,8 @@
   align-items: center;
   justify-content: center;
   width: min(100%, 304px);
-  padding: calc(var(--space-xs) - 1px) var(--space-m);   /* висота 44 */
+  padding: calc(var(--space-xs) - 1px) var(--space-m);
+  /* висота 44 */
   border: 1px solid var(--c-ink);
   border-radius: 4px;
   background: transparent;
@@ -148,8 +159,14 @@
   color: var(--c-white);
 }
 
-.btn-outline:active:not(:disabled) { transform: translateY(1px); }
-.btn-outline:disabled { opacity: .4; cursor: default; }
+.btn-outline:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-outline:disabled {
+  opacity: .4;
+  cursor: default;
+}
 
 .btn-outline:focus-visible {
   outline: 2px solid var(--c-accent);
@@ -217,6 +234,28 @@
   transition: color .2s ease, background-color .2s ease;
 }
 
+.summary__line--muted {
+  color: var(--c-muted);
+}
+
+.summary__restore {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--c-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .summary__restore:hover {
+    color: var(--c-primary-hover);
+  }
+}
+
 @media (hover: hover) {
   .summary__remove:hover {
     color: var(--c-ink);
@@ -240,7 +279,9 @@
   color: var(--c-ink);
 }
 
-.summary__order { margin-top: var(--space-m); }
+.summary__order {
+  margin-top: var(--space-m);
+}
 
 /* --- Кнопка-пігулка --- */
 .btn-pill {
@@ -248,9 +289,9 @@
   align-items: center;
   justify-content: center;
   width: min(100%, 312px);
-  padding: var(--space-s) var(--space-l);   /* висота 52 */
+  padding: var(--space-s) var(--space-l);
+  /* висота 52 */
   border: 0;
-  border-radius: 999px;
   background: var(--c-order);
   color: var(--c-white);
   font: 600 16px/20px var(--font);
@@ -259,7 +300,9 @@
 }
 
 @media (hover: hover) {
-  .btn-pill:hover { filter: brightness(1.08); }
+  .btn-pill:hover {
+    filter: brightness(1.08);
+  }
 }
 
 .btn-pill:active {
@@ -286,9 +329,14 @@
   width: 100%;
   height: 100%;
   cursor: grab;
-  touch-action: pan-y;   /* на планшеті вертикальний скрол сторінки працює */
+  touch-action: pan-y;
+  /* на планшеті вертикальний скрол сторінки працює */
 }
 
-.builder__canvas.is-dragging { cursor: grabbing; }
+.builder__canvas.is-dragging {
+  cursor: grabbing;
+}
 
-.builder.is-no3d .builder__stage { display: none; }
+.builder.is-no3d .builder__stage {
+  display: none;
+}

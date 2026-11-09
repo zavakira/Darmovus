@@ -1,0 +1,82 @@
+/* =========================================================
+   CUT — однакові зрізані кути на всіх формах
+   Підключається ОСТАННІМ файлом стилів.
+   Розмір зрізу — змінна --cut у :root (style.css).
+   ========================================================= */
+
+/* 1. Заповнені форми: просто обрізаємо кути */
+.btn--cut,
+.btn-pill,
+.checkout__primary,
+.checkout__dark,
+.wallet,
+.cart-item__image,
+.board__metal,
+.note__card {
+  border-radius: 0;
+  clip-path: var(--cut-path);
+}
+
+/* 2. Форми з рамкою: обрізаємо кути й домальовуємо рамку на зрізах */
+.btn-outline,
+.ring__arrow,
+.qty,
+.field__input,
+.choice,
+.pay-option,
+.order-summary,
+.callout,
+.checkout__outline,
+.done__check {
+  --cut-w: 1px;   /* товщина рамки на зрізах */
+
+  border-radius: 0;
+  clip-path: var(--cut-path);
+  background-image:
+    linear-gradient(to bottom right, transparent 50%, var(--cut-line) 50%,
+      var(--cut-line) calc(50% + var(--cut-w)), transparent calc(50% + var(--cut-w))),
+    linear-gradient(to bottom left, transparent 50%, var(--cut-line) 50%,
+      var(--cut-line) calc(50% + var(--cut-w)), transparent calc(50% + var(--cut-w))),
+    linear-gradient(to top right, transparent 50%, var(--cut-line) 50%,
+      var(--cut-line) calc(50% + var(--cut-w)), transparent calc(50% + var(--cut-w))),
+    linear-gradient(to top left, transparent 50%, var(--cut-line) 50%,
+      var(--cut-line) calc(50% + var(--cut-w)), transparent calc(50% + var(--cut-w)));
+  background-size: var(--cut) var(--cut);
+  background-position: top left, top right, bottom left, bottom right;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+}
+
+/* колір рамки на зрізах = колір звичайної рамки */
+.btn-outline                        { --cut-line: var(--c-primary); }
+.ring__arrow                        { --cut-line: var(--c-line); }
+.qty, .callout, .checkout__outline  { --cut-line: var(--c-ink); }
+.done__check                        { --cut-line: var(--c-ink); }
+.field__input, .choice, .pay-option { --cut-line: var(--ck-input); }
+.order-summary                      { --cut-line: var(--ck-line); }
+
+@media (hover: hover) {
+  .ring__arrow:hover:not(:disabled) { --cut-line: var(--c-primary); }
+}
+
+/* 3. Активні стани форм: синя рамка 2px, і на зрізах теж */
+.field__input:focus,
+.choice:has(input:checked),
+.pay-option:has(input:checked) {
+  --cut-line: var(--c-primary);
+  --cut-w: 2px;
+  border-color: var(--c-primary);
+  box-shadow: inset 0 0 0 1px var(--c-primary);
+}
+
+.field__input:user-invalid {
+  --cut-line: #c2412d;
+  border-color: #c2412d;
+}
+
+/* 4. Фокус з клавіатури: рамка всередині, бо зовнішню обрізали б кути */
+:is(.btn-pill, .btn-outline, .ring__arrow, .checkout__primary,
+    .checkout__dark, .checkout__outline, .wallet):focus-visible {
+  outline: 2px solid var(--blue-400);
+  outline-offset: -5px;
+}
