@@ -11,7 +11,7 @@
 .checkout__dark,
 .wallet,
 .cart-item__image,
-.board__metal,
+.review__card,
 .note__card {
   border-radius: 0;
   clip-path: var(--cut-path);

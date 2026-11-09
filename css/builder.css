@@ -15,7 +15,7 @@
 
 .builder__panel {
   grid-column: 1 / span 5;
-  padding-block: calc(80 * var(--u));
+  padding-block: var(--section-y);
 }
 
 .builder__title {
@@ -339,4 +339,8 @@
 
 .builder.is-no3d .builder__stage {
   display: none;
+}
+
+.builder__lead+.ring {
+  margin-top: var(--section-head-gap);
 }

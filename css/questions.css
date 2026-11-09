@@ -2,7 +2,7 @@
    FAQ — питання
    ========================================================= */
 .faq {
-  padding-block: calc(120 * var(--u));
+  padding-block: var(--section-y);
   interpolate-size: allow-keywords;   /* дозволяє плавно відкривати відповідь */
 }
 
@@ -15,7 +15,7 @@
 .faq__inner > * { grid-column: 3 / span 6; }
 
 .faq__title {
-  margin: 0 0 var(--space-l);
+  margin: 0 0 var(--section-head-gap);
   font-size: max(calc(32 * var(--u)), 26px);
   font-weight: 700;
   line-height: 1.1;
