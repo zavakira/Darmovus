@@ -78,7 +78,7 @@
   /* висота підлаштовується під екран, щоб картки вміщались повністю */
   height: clamp(200px, 40svh, calc(372 * var(--u)));
   object-fit: cover;
-  object-position: var(--photo-x, 50%) var(--photo-y, 50%);
+  object-position: var(--photo-x, 50%) var(--photo-y, 5%);
 }
 
 /* біла плашка з квадратними дужками (дужки малює cut.css) */
