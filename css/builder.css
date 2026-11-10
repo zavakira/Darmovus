@@ -21,9 +21,9 @@
 .builder__title {
   margin: 0;
   font-size: max(calc(32 * var(--u)), 26px);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -.05em;
+font-weight: 600;
+line-height: 1.1;
+letter-spacing: -.04em;
   text-transform: uppercase;
   color: var(--c-ink);
 }

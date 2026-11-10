@@ -3,31 +3,33 @@
    ========================================================= */
 .reviews {
   padding-block: var(--section-y);
+  /* блакитна смуга посередині, як у hero */
+  background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-card) 50%, var(--c-bg) 100%);
 }
 
 /* --- Заголовок і посилання --- */
 .reviews__head {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--space-m);
+  flex-direction: column;
 }
 
 .reviews__title {
   margin: 0;
   font-size: max(calc(32 * var(--u)), 26px);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.1;
-  letter-spacing: -.05em;
+  letter-spacing: -.04em;
   text-transform: uppercase;
   color: var(--c-ink);
 }
 
 .reviews__link {
-  white-space: nowrap;
+  align-self: flex-end;
+  margin-top: var(--space-m);
   font-size: 16px;
-  line-height: 24px;
-  color: var(--c-ink);
+  line-height: 20px;
+  white-space: nowrap;
+  color: var(--c-muted);
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: color .2s ease;
@@ -44,21 +46,19 @@
   outline-offset: 4px;
 }
 
-/* --- Картки --- */
+/* --- Картки: колонки 2–9 сітки --- */
 .reviews__list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--grid-gutter);
-  margin: var(--section-head-gap) 0 0;
+  gap: calc(64 * var(--u));
+  margin: var(--section-head-gap) calc(132 * var(--u)) 0;
   padding: 0;
   list-style: none;
 }
 
-/* тінь окремо від картки, щоб її не обрізали зрізані кути */
 .review {
   display: flex;
-  /*filter:
-    drop-shadow(0 12px 24px rgba(23, 29, 47, .12)) drop-shadow(0 2px 4px rgba(23, 29, 47, .08));*/
+  filter: drop-shadow(0 16px 32px rgba(17, 17, 17, .1));
 }
 
 .review__card {
@@ -66,25 +66,36 @@
   flex-direction: column;
   width: 100%;
   margin: 0;
-  background: var(--c-white);
+}
+
+/* середня картка: текст зверху, фото знизу */
+.review--reverse .review__card {
+  flex-direction: column-reverse;
 }
 
 .review__photo {
   width: 100%;
-  height: clamp(240px, 46svh, calc(460 * var(--u)));
+  /* висота підлаштовується під екран, щоб картки вміщались повністю */
+  height: clamp(200px, 40svh, calc(372 * var(--u)));
   object-fit: cover;
   object-position: var(--photo-x, 50%) var(--photo-y, 50%);
 }
 
+/* біла плашка з квадратними дужками (дужки малює cut.css) */
 .review__body {
   flex: 1;
-  padding: var(--space-m);
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-height: calc(128 * var(--u));
+  padding: 24px;
+  background-color: var(--c-white);
 }
 
 .review__text {
   margin: 0;
   font-size: 18px;
-  line-height: 20px;
+  line-height: 1.2;
   color: var(--c-ink);
 }
 
@@ -93,20 +104,20 @@
 }
 
 .review__author {
-  margin: var(--space-xs) 0 0;
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--c-muted);
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--c-tertiary);
 }
 
 /* --- Планшет --- */
 @media (max-width: 1024px) {
-  .review__body {
-    padding: var(--space-m);
+  .reviews__list {
+    margin-inline: 0;
+    gap: var(--grid-gutter);
   }
 
   .review__text {
     font-size: 16px;
-    line-height: 24px;
   }
 }

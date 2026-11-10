@@ -11,7 +11,6 @@
 .checkout__dark,
 .wallet,
 .cart-item__image,
-.review__card,
 .note__card {
   border-radius: 0;
   clip-path: var(--cut-path);
@@ -20,15 +19,13 @@
 /* 2. Форми з рамкою: обрізаємо кути й домальовуємо рамку на зрізах */
 .btn-outline,
 .ring__arrow,
-.qty,
 .field__input,
 .choice,
 .pay-option,
 .order-summary,
-.callout,
-.checkout__outline,
 .done__check {
-  --cut-w: 1px;   /* товщина рамки на зрізах */
+  --cut-w: 1px;
+  /* товщина рамки на зрізах */
 
   border-radius: 0;
   clip-path: var(--cut-path);
@@ -48,15 +45,38 @@
 }
 
 /* колір рамки на зрізах = колір звичайної рамки */
-.btn-outline                        { --cut-line: var(--c-primary); }
-.ring__arrow                        { --cut-line: var(--c-line); }
-.qty, .callout, .checkout__outline  { --cut-line: var(--c-ink); }
-.done__check                        { --cut-line: var(--c-ink); }
-.field__input, .choice, .pay-option { --cut-line: var(--ck-input); }
-.order-summary                      { --cut-line: var(--ck-line); }
+.btn-outline {
+  --cut-line: var(--c-primary);
+}
+
+.ring__arrow {
+  --cut-line: var(--c-line);
+}
+
+.qty,
+.callout,
+.checkout__outline {
+  --cut-line: var(--c-ink);
+}
+
+.done__check {
+  --cut-line: var(--c-ink);
+}
+
+.field__input,
+.choice,
+.pay-option {
+  --cut-line: var(--ck-input);
+}
+
+.order-summary {
+  --cut-line: var(--ck-line);
+}
 
 @media (hover: hover) {
-  .ring__arrow:hover:not(:disabled) { --cut-line: var(--c-primary); }
+  .ring__arrow:hover:not(:disabled) {
+    --cut-line: var(--c-primary);
+  }
 }
 
 /* 3. Активні стани форм: синя рамка 2px, і на зрізах теж */
@@ -76,7 +96,32 @@
 
 /* 4. Фокус з клавіатури: рамка всередині, бо зовнішню обрізали б кути */
 :is(.btn-pill, .btn-outline, .ring__arrow, .checkout__primary,
-    .checkout__dark, .checkout__outline, .wallet):focus-visible {
+  .checkout__dark, .checkout__outline, .wallet):focus-visible {
   outline: 2px solid var(--blue-400);
   outline-offset: -5px;
+}
+
+/* =========================================================
+   5. Квадратні дужки по боках: плашки описів і відгуків
+   ========================================================= */
+.callout,
+.review__body {
+  --br-len: 24px;
+  --br-w: 2px;
+  --br-c: var(--c-border-strong);    /* колір дужок */
+
+  background-image:
+    linear-gradient(var(--br-c), var(--br-c)),
+    linear-gradient(var(--br-c), var(--br-c)),
+    linear-gradient(var(--br-c), var(--br-c)),
+    linear-gradient(var(--br-c), var(--br-c)),
+    linear-gradient(var(--br-c), var(--br-c)),
+    linear-gradient(var(--br-c), var(--br-c));
+  background-size:
+    var(--br-w) 100%, var(--br-len) var(--br-w), var(--br-len) var(--br-w),
+    var(--br-w) 100%, var(--br-len) var(--br-w), var(--br-len) var(--br-w);
+  background-position:
+    left top, left top, left bottom,
+    right top, right top, right bottom;
+  background-repeat: no-repeat;
 }

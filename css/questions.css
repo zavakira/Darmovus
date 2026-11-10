@@ -3,7 +3,8 @@
    ========================================================= */
 .faq {
   padding-block: var(--section-y);
-  interpolate-size: allow-keywords;   /* дозволяє плавно відкривати відповідь */
+  interpolate-size: allow-keywords;
+  /* дозволяє плавно відкривати відповідь */
 }
 
 .faq__inner {
@@ -12,20 +13,24 @@
   column-gap: var(--grid-gutter);
 }
 
-.faq__inner > * { grid-column: 3 / span 6; }
+.faq__inner>* {
+  grid-column: 3 / span 6;
+}
 
 .faq__title {
   margin: 0 0 var(--section-head-gap);
   font-size: max(calc(32 * var(--u)), 26px);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.1;
-  letter-spacing: -.05em;
+  letter-spacing: -.04em;
   text-transform: uppercase;
   color: var(--c-ink);
 }
 
 /* --- Питання --- */
-.faq__item { border-top: 1px solid var(--c-ink); }
+.faq__item {
+  border-top: 1px solid var(--c-border-strong);
+}
 
 .faq__question {
   position: relative;
@@ -33,7 +38,8 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-m);
-  padding: var(--space-l) 0 var(--space-l) var(--space-s);   /* 32 + 24 + 32 = 88 */
+  padding: var(--space-l) 0 var(--space-l) var(--space-s);
+  /* 32 + 24 + 32 = 88 */
   font-size: 16px;
   line-height: 24px;
   color: var(--c-ink);
@@ -42,7 +48,9 @@
   transition: color .2s ease;
 }
 
-.faq__question::-webkit-details-marker { display: none; }
+.faq__question::-webkit-details-marker {
+  display: none;
+}
 
 /* крапка зліва, як на макеті */
 .faq__question::before {
@@ -63,10 +71,14 @@
   transition: rotate .3s ease;
 }
 
-.faq__item[open] .faq__question::after { rotate: 45deg; }
+.faq__item[open] .faq__question::after {
+  rotate: 45deg;
+}
 
 @media (hover: hover) {
-  .faq__question:hover { color: var(--c-accent); }
+  .faq__question:hover {
+    color: var(--c-accent);
+  }
 }
 
 .faq__question:focus-visible {
@@ -82,8 +94,13 @@
   color: var(--c-muted);
 }
 
-.faq__answer p { margin: 0; }
-.faq__answer p + p { margin-top: var(--space-xs); }
+.faq__answer p {
+  margin: 0;
+}
+
+.faq__answer p+p {
+  margin-top: var(--space-xs);
+}
 
 /* плавне відкриття */
 .faq__item::details-content {
@@ -92,4 +109,6 @@
   transition: block-size .3s ease, content-visibility .3s allow-discrete;
 }
 
-.faq__item[open]::details-content { block-size: auto; }
+.faq__item[open]::details-content {
+  block-size: auto;
+}

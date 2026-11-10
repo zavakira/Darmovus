@@ -1,9 +1,30 @@
 .header {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 20;
+  border-bottom: 1px solid transparent;
+  transition:
+    translate .3s cubic-bezier(.2, .8, .2, 1),
+    border-color .3s ease;
   z-index: 10;
-  background: var(--c-hero-top);
+  background: transparent;
   color: var(--c-ink);
+}
+
+.header.is-scrolled {
+  background: rgb(232 234 237 / .8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* сховався при скролі вниз */
+.header.is-hidden {
+  translate: 0 -100%;
+}
+
+/* з'явився посеред сторінки — тонка лінія знизу */
+.header.is-scrolled {
+  border-bottom-color: var(--c-line);
 }
 
 .header__inner {

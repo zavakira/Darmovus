@@ -6,7 +6,7 @@
   overflow: hidden;
   translate: 0 calc(var(--out) * -25%);
   opacity: calc(1 - var(--out));
-  background: linear-gradient(180deg, var(--c-hero-top) 0%, var(--c-hero-mid) 50%, var(--c-bg) 100%);
+  background: linear-gradient(180deg, var(--c-hero-top) 0%, var(--c-hero-mid) 45%, var(--c-bg) 90%);
 }
 
 .scene.is-base .hero {
@@ -22,6 +22,7 @@
   /* заголовок рівно по центру висоти */
   column-gap: var(--grid-gutter);
   height: 100%;
+  padding-top: var(--header-h);
   padding-bottom: var(--hero-pb);
 }
 

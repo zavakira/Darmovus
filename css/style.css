@@ -30,13 +30,13 @@
   --space-3xl: 96px;
   --space-4xl: 128px;
 
-  --c-bg: #e9eaef;
-  --c-ink: #171d2f;
-  --c-text: #1b1b1d;
+  --c-bg: #e8eaed;
+  --c-ink: #111111;
+  --c-text: #111111;
   --c-header: #06070b;
   --c-white: #ffffff;
   --c-accent: var(--blue-600);
-  --c-muted: #636b7e;
+  --c-muted: #5f5d58;
   --c-line: #c6ccd9;
   --c-order: var(--c-primary);
 
@@ -45,12 +45,11 @@
   --header-h: 72px;
 
   /* палітра: відтінки #0C3CCD */
-  --blue-50: #E9F6FF;
-  --blue-100: #D6EFFF;
-  --blue-200: #B6DFFF;
-  --blue-300: #8AC6FF;
-  --blue-400: #5BA0FF;
-  --blue-500: #3679FF;
+  --blue-100: #E3EAF6;
+  --blue-200: #C7D7EE;
+  --blue-300: #ABC4E5;
+  --blue-400: #83A6D7;
+  --blue-500: #6588cc;
   --blue-600: #144FFF;
   --blue-700: #0A42F8;
   --blue-800: #0C3CCD;
@@ -64,8 +63,18 @@
 
   /* фон hero: зверху темніше, посередині блакитний, знизу колір сторінки */
   --c-hero-top: #d3d7e0;
-  --c-hero-mid: #dfe6f2;
+  --c-hero-mid: #c7d7ee;
   --c-nav: #6f798f;
+  --c-card: #c7d7ee;
+  /* блакитні плашки, середина градієнтів */
+  --c-text-accent: #5170bf;
+  /* кошик у хедері */
+  --c-tertiary: #a3a3a3;
+  /* імена у відгуках */
+  --c-border-strong: var(--blue-600);
+  /* border/strong */
+  --c-text-brand: var(--blue-600);
+  /* сині слова в заголовках */
 
   /* зрізані кути — однакові на всьому сайті */
   --cut: 8px;
@@ -73,6 +82,8 @@
       100% var(--cut), 100% calc(100% - var(--cut)),
       calc(100% - var(--cut)) 100%, var(--cut) 100%,
       0 calc(100% - var(--cut)), 0 var(--cut));
+
+      
 }
 
 /* =========================================================
@@ -88,9 +99,7 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-html {
-  scroll-padding-top: var(--header-h);
-}
+
 
 body {
   margin: 0;

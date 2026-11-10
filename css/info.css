@@ -2,7 +2,7 @@
    SCENE — hero → «Ідеальна база» на скролі
    ========================================================= */
 .scene {
-    --stage-h: calc(100svh - var(--header-h));
+    --stage-h: 100svh;
     --v: calc(var(--stage-h) / 900);
     --hero-h: var(--stage-h);
     --hero-pb: calc(64 * var(--u));
@@ -27,7 +27,7 @@
 
 .scene__stage {
     position: sticky;
-    top: var(--header-h);
+    top: 0;
     height: var(--stage-h);
     overflow: hidden;
     /* коли наїжджає наступна секція: трохи зменшується й темнішає */
@@ -39,12 +39,12 @@
 /* --- Дармовис --- */
 .scene__product {
     position: absolute;
-    top: calc(24 * var(--u));
+    top: calc(var(--header-h) + 40 * var(--u));
     left: var(--product-shift, 0px);
     right: calc(var(--product-shift, 0px) * -1);
     z-index: 2;
     width: fit-content;
-    height: calc(var(--hero-h) - 24 * var(--u) - var(--hero-pb));
+    height: calc(var(--hero-h) - var(--header-h) - 40 * var(--u) - var(--hero-pb));
     margin-inline: auto;
     transform-origin: 50% 0;
     transform: translateY(calc(var(--zoom-y) * var(--zoom))) scale(calc(1 + (var(--zoom-s) - 1) * var(--zoom)));
@@ -77,7 +77,7 @@
 .cover {
     position: relative;
     z-index: 2;
-    margin-top: calc(var(--header-h) - 100svh);
+    margin-top: -100svh;
     background: var(--c-bg);
     /*box-shadow: 0 -16px 40px rgba(18, 20, 28, .18);*/
     clip-path: inset(-80px 0 0 0);
@@ -106,10 +106,10 @@
 .base__title {
     grid-column: 1 / span 5;
     margin: calc(80 * var(--v)) 0 0;
-    font-size: max(calc(32 * var(--u)), 24px);
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -.06em;
+    font-size: max(calc(32 * var(--u)), 26px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -.04em;
     text-transform: uppercase;
     color: var(--c-ink);
     opacity: var(--appear);
@@ -118,13 +118,17 @@
 
 .callout {
     margin-top: var(--top);
-    padding: var(--space-m);
-    border: 1px solid var(--c-ink);
-    background: var(--c-bg);
-    color: var(--c-ink);
+    padding: 20px 24px;
+    border: 0;
+    background-color: transparent;
+    color: text ;
     opacity: 0;
     translate: 0 16px;
     transition: opacity .4s ease, translate .4s ease;
+    grid-column: 1 / -1;
+    justify-self: start;
+    width: var(--w, calc(268 * var(--u)));
+    margin-left: var(--x);
 }
 
 .callout.is-visible {
@@ -132,54 +136,43 @@
     translate: 0 0;
 }
 
-.scene:not(.is-base) .callout {
-    opacity: 0;
-}
-
 .callout__title {
-  margin: 0 0 var(--space-xs);
-  font-size: 20px;      /* розмір */
-  font-weight: 500;     /* накреслення: 400 звичайне … 700 жирне */
-  line-height: 22px;
-  text-wrap: balance;
-}
-
-.callout__title::before {
-    content: "[\00a0";
-}
-
-.callout__title::after {
-    content: "\00a0]";
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.1;
+    text-wrap: balance;
 }
 
 .callout__text {
     margin: 0;
     font-size: 14px;
-    line-height: 16px;
+    line-height: 1.2;
 }
 
 /* позиції: колонки сітки + відступ зверху з макета */
 .callout--cord {
-    grid-column: 7 / span 2;
-    --top: calc(80 * var(--v));
+    --x: calc(789 * var(--u));
+    --top: calc(132 * var(--v));
 }
 
 .callout--skate {
-    grid-column: 2 / span 2;
-    --top: calc(272 * var(--v));
+    --x: calc(86 * var(--u));
+    --top: calc(271 * var(--v));
 }
 
 .callout--ring {
-    grid-column: 8 / span 2;
-    --top: calc(328 * var(--v));
+    --x: calc(918 * var(--u));
+    --top: calc(377 * var(--v));
 }
 
 .callout--ice {
-    grid-column: 2 / span 2;
+    --x: calc(20 * var(--u));
     --top: calc(564 * var(--v));
 }
 
 .callout--star {
-    grid-column: 9 / span 2;
-    --top: calc(656 * var(--v));
+    --x: calc(1008 * var(--u));
+    --top: calc(655 * var(--v));
+    --w: calc(250 * var(--u));
 }
